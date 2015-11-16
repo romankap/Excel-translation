@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 }));*/
 
 app.post('/api/upload-sheet', upload.single('sheet'), function (req, res) {
-    console.log('Uploaded to  ' + req.file.path + "\n" + JSON.stringify(req.file));
+    console.log('Uploaded ' + req.file.filename);
     
     //var download_buffer = new Buffer(fs.readFileSync())
     res.sendFile(__dirname + "/download.html");
