@@ -6,7 +6,8 @@ var http = require('http');
 var fs = require('fs');
 var config = require('./config');
 var multer  = require('multer')
-var upload  = multer({ dest: __dirname + './sheets/'});
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 
 var app = express();
