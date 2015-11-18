@@ -37,8 +37,8 @@ var replace_russ = function(excel_sheet_cell) {
     for(var russ in dictionary) {
         if(dictionary.hasOwnProperty(russ)) {
             if ( excel_sheet_cell.indexOf(russ) > -1)  {
+                console.log("Translating: " + russ + " --> " + dictionary[russ]);
                 return excel_sheet_cell.replace(russ, dictionary[russ]);
-                console.log("<replace_russ> found russian string")
             }
         }
     }   
@@ -70,7 +70,7 @@ function handleFile(e) {
                     continue;
                 
                 var original_string = JSON.stringify(worksheet[z].v);
-                console.log(y + "!" + z + "=" + original_string.replace("Заказчик", dictionary["Заказчик"])  );
+                //console.log(y + "!" + z + "=" + original_string.replace("Заказчик", dictionary["Заказчик"])  );
 
                 output_sheet[z].v = replace_russ(original_string);
             }
