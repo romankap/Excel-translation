@@ -33,6 +33,18 @@ function handleTranslationFile(evt) {
     }
 }
 
+var replace_russ = function(excel_sheet_cell) {
+    for(var russ in dictionary) {
+        if(dictionary.hasOwnProperty(russ)) {
+            if ( excel_sheet_cell.indexOf(russ) > -1)  {
+                return excel_sheet_cell.replace(russ, dictionary[russ]);
+                console.log("<replace_russ> found russian string")
+            }
+        }
+    }   
+    return excel_sheet_cell;
+}
+
 
 function handleFile(e) {
   var files = e.target.files;
@@ -54,9 +66,13 @@ function handleFile(e) {
             
             for (z in worksheet) {
                 /* all keys that do not begin with "!" correspond to cell addresses */
-                if(z[0] === '!') continue;
-                console.log(y + "!" + z + "=" + JSON.stringify(worksheet[z].v).replace("Заказчик", dictionary["Заказчик"])  );
-                output_sheet[z].v = JSON.stringify(worksheet[z].v).replace("Заказчик", dictionary["Заказчик"])
+                if(z[0] === '!') 
+                    continue;
+                
+                var original_string = JSON.stringify(worksheet[z].v);
+                console.log(y + "!" + z + "=" + original_string.replace("Заказчик", dictionary["Заказчик"])  );
+
+                output_sheet[z].v = replace_russ(original_string);
             }
         });
         
