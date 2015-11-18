@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true})); // support encoded bodies
 
 // Serve HTTP requests
 app.set('port', (process.env.PORT || 8080));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname));
 
 // =====================
 /*app.use(multer({ dest: __dirname + '/sheets/',
