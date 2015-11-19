@@ -1,7 +1,9 @@
 var test = function() {
     console.log("hello");
+    
 }
 test();
+
 
 var dictionary = {};
 
@@ -23,6 +25,7 @@ function handleTranslationFile(evt) {
                         
                         console.log(index + ". Russian: " + russ + ". Hebrew: " + dictionary[russ]);
                       });
+                    $("#upload-sheet-block").show();
                 };
             })(f);
 
@@ -87,7 +90,7 @@ function handleFile(e) {
         }
 
         /* the saveAs call downloads a file on the local machine */
-        saveAs(new Blob([s2ab(wbout)],{type:""}), "test.xlsx")
+        saveAs(new Blob([s2ab(wbout)],{type:""}), "heb-sheet.xlsx")
         
     };
     // End of onload
@@ -107,5 +110,5 @@ window.onload = function() {
     fileInput.addEventListener('change', handleFile, false);
     translationFileInput.addEventListener('change', handleTranslationFile, false);
     
-    $("#download-btn").hide();
+    $("#upload-sheet-block").hide();
 }
