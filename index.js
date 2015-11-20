@@ -37,15 +37,17 @@ function handleTranslationFile(evt) {
 }
 
 var replace_russ = function(excel_sheet_cell) {
+    var replaced_string = excel_sheet_cell;
+    
     for(var russ in dictionary) {
         if(dictionary.hasOwnProperty(russ)) {
             if ( excel_sheet_cell.indexOf(String(russ)) > -1)  {
                 console.log("Translating: " + russ + " --> " + dictionary[russ]);
-                return excel_sheet_cell.replace(russ, dictionary[russ]);
+                replaced_string = replaced_string.replace(russ, dictionary[russ]);
             }
         }
     }   
-    return excel_sheet_cell;
+    return replaced_string;
 }
 
 
