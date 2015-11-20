@@ -39,7 +39,7 @@ function handleTranslationFile(evt) {
 var replace_russ = function(excel_sheet_cell) {
     for(var russ in dictionary) {
         if(dictionary.hasOwnProperty(russ)) {
-            if ( excel_sheet_cell.indexOf(russ) > -1)  {
+            if ( excel_sheet_cell.indexOf(String(russ)) > -1)  {
                 console.log("Translating: " + russ + " --> " + dictionary[russ]);
                 return excel_sheet_cell.replace(russ, dictionary[russ]);
             }
@@ -72,7 +72,7 @@ function handleFile(e) {
                 if(z[0] === '!') 
                     continue;
                 
-                var original_string = JSON.stringify(worksheet[z].v);
+                var original_string = String(worksheet[z].v);
                 //console.log(y + "!" + z + "=" + original_string.replace("Заказчик", dictionary["Заказчик"])  );
 
                 output_sheet[z].v = replace_russ(original_string);
